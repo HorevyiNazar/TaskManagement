@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		ED19154D2B068ECA00F9C17B /* TaskManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19154C2B068ECA00F9C17B /* TaskManagementApp.swift */; };
-		ED19154F2B068ECA00F9C17B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19154E2B068ECA00F9C17B /* ContentView.swift */; };
 		ED1915512B068ECB00F9C17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED1915502B068ECB00F9C17B /* Assets.xcassets */; };
 		ED1915542B068ECB00F9C17B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED1915532B068ECB00F9C17B /* Preview Assets.xcassets */; };
-		ED1915562B068ECB00F9C17B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1915552B068ECB00F9C17B /* Persistence.swift */; };
-		ED1915592B068ECB00F9C17B /* TaskManagement.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED1915572B068ECB00F9C17B /* TaskManagement.xcdatamodeld */; };
+		ED1915612B068F6A00F9C17B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1915602B068F6A00F9C17B /* Task.swift */; };
+		ED1915642B0692B700F9C17B /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1915632B0692B700F9C17B /* View+Extension.swift */; };
+		ED1915662B0692D900F9C17B /* Date+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1915652B0692D900F9C17B /* Date+Extenstion.swift */; };
+		ED19156B2B06940800F9C17B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19156A2B06940800F9C17B /* Home.swift */; };
+		ED19156D2B06942100F9C17B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19156C2B06942100F9C17B /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ED1915492B068ECA00F9C17B /* TaskManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED19154C2B068ECA00F9C17B /* TaskManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagementApp.swift; sourceTree = "<group>"; };
-		ED19154E2B068ECA00F9C17B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ED1915502B068ECB00F9C17B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED1915532B068ECB00F9C17B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		ED1915552B068ECB00F9C17B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		ED1915582B068ECB00F9C17B /* TaskManagement.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskManagement.xcdatamodel; sourceTree = "<group>"; };
+		ED1915602B068F6A00F9C17B /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		ED1915632B0692B700F9C17B /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		ED1915652B0692D900F9C17B /* Date+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extenstion.swift"; sourceTree = "<group>"; };
+		ED19156A2B06940800F9C17B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		ED19156C2B06942100F9C17B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +59,13 @@
 		ED19154B2B068ECA00F9C17B /* TaskManagement */ = {
 			isa = PBXGroup;
 			children = (
+				ED1915672B0693E600F9C17B /* View */,
+				ED1915622B06928300F9C17B /* Helpers */,
+				ED19155F2B068F5600F9C17B /* Model */,
 				ED19154C2B068ECA00F9C17B /* TaskManagementApp.swift */,
-				ED19154E2B068ECA00F9C17B /* ContentView.swift */,
 				ED1915502B068ECB00F9C17B /* Assets.xcassets */,
-				ED1915552B068ECB00F9C17B /* Persistence.swift */,
-				ED1915572B068ECB00F9C17B /* TaskManagement.xcdatamodeld */,
 				ED1915522B068ECB00F9C17B /* Preview Content */,
+				ED19156C2B06942100F9C17B /* ContentView.swift */,
 			);
 			path = TaskManagement;
 			sourceTree = "<group>";
@@ -71,6 +76,31 @@
 				ED1915532B068ECB00F9C17B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ED19155F2B068F5600F9C17B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED1915602B068F6A00F9C17B /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED1915622B06928300F9C17B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				ED1915632B0692B700F9C17B /* View+Extension.swift */,
+				ED1915652B0692D900F9C17B /* Date+Extenstion.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		ED1915672B0693E600F9C17B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED19156A2B06940800F9C17B /* Home.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,10 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED1915562B068ECB00F9C17B /* Persistence.swift in Sources */,
-				ED19154F2B068ECA00F9C17B /* ContentView.swift in Sources */,
+				ED1915612B068F6A00F9C17B /* Task.swift in Sources */,
+				ED1915642B0692B700F9C17B /* View+Extension.swift in Sources */,
+				ED19156D2B06942100F9C17B /* ContentView.swift in Sources */,
+				ED19156B2B06940800F9C17B /* Home.swift in Sources */,
+				ED1915662B0692D900F9C17B /* Date+Extenstion.swift in Sources */,
 				ED19154D2B068ECA00F9C17B /* TaskManagementApp.swift in Sources */,
-				ED1915592B068ECB00F9C17B /* TaskManagement.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,19 +384,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		ED1915572B068ECB00F9C17B /* TaskManagement.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				ED1915582B068ECB00F9C17B /* TaskManagement.xcdatamodel */,
-			);
-			currentVersion = ED1915582B068ECB00F9C17B /* TaskManagement.xcdatamodel */;
-			path = TaskManagement.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = ED1915412B068ECA00F9C17B /* Project object */;
 }
