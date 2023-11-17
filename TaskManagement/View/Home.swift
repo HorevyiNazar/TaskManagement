@@ -11,17 +11,38 @@ struct Home: View {
     /// Task Manager Properties
     @State private var currentDate: Date = .init()
     @State private var weekSlider: [[Date.WeekDay]] = []
-    @State private var currentWeekIndex: Int = 0
-    
+    @State private var currentWeekIndex: Int = 1
+    @State private var createWeek: Bool = false
+    @State private var tasks: [Task] = sampleTask.sorted(by: { $1.creationDate > $0.creationDate})
+    /// Animation NameSpace
+    @Namespace private var animation
     var body: some View {
         VStack(alignment: .leading, spacing: 0, content: {
             HeaderView()
+            
+            ScrollView(.vertical) {
+                VStack {
+                    /// Task View
+                    TaskView()
+                }
+                .hSpacing(.center)
+                .vSpacing(.center)
+            }
+            .scrollIndicators(.hidden)
         })
         .vSpacing(.top)
         .onAppear {
             if weekSlider.isEmpty {
                 let currentWeek = Date().fetchWeek()
+                
+                if let firstDate = currentWeek.first?.date {
+                    weekSlider.append(firstDate.createPreviousWeek())
+                }
                 weekSlider.append(currentWeek)
+                
+                if let lastDate = currentWeek.last?.date {
+                    weekSlider.append(lastDate.createNextWeek())
+                }
             }
         }
     }
@@ -49,9 +70,11 @@ struct Home: View {
                 ForEach(weekSlider.indices, id: \.self) { index in
                     let week = weekSlider[index]
                     WeekView(week)
+                        .padding(.horizontal, 15)
                         .tag(index)
                 }
             }
+            .padding(.horizontal, -15)
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(height: 90)
         }
@@ -67,6 +90,12 @@ struct Home: View {
         })
         .padding(15)
         .background(.white)
+        .onChange(of: currentWeekIndex, initial: false) { oldValue, newValue in
+            /// Creating new weeks When it reaches first/last Page
+            if newValue == 0 || newValue == (weekSlider.count - 1) {
+                createWeek = true
+            }
+        }
     }
     /// Week View
     @ViewBuilder
@@ -89,6 +118,7 @@ struct Home: View {
                         .background(content: {
                             if isSameDate(day.date, currentDate) {
                                 Circle().fill(Color.darkBlue)
+                                    .matchedGeometryEffect(id: "TABINDICATOR", in: animation)
                             }
                             /// Indicator to show , whis is Today Date
                             if day.date.isToday {
@@ -102,10 +132,59 @@ struct Home: View {
                 })
                 .hSpacing(.center)
                 .contentShape(.rect)
-                onTapGesture {
-                    /// Updating Curent Date
-                    
+                .onTapGesture {
+                    /// Updating Current State
+                    withAnimation(.snappy) {
+                        currentDate = day.date
+                    }
                 }
+            }
+        }
+        .background {
+            GeometryReader {
+                let minX = $0.frame(in: .global).minX
+                
+                Color.clear
+                    .preference(key: OffsetKey.self, value: minX)
+                    .onPreferenceChange(OffsetKey.self, perform: { value in
+                        /// When the Offset reaches 15 and if the createWeek is toggled then generate next set of week
+                        if value.rounded() == 15 && createWeek {
+                            paginateWeek()
+                            createWeek = false
+                        }
+                    })
+            }
+        }
+    }
+    
+    /// Tasks View
+    @ViewBuilder
+    func TaskView() -> some View {
+        VStack(alignment: .leading, spacing: 35, content: {
+            ForEach($tasks) { $task in
+                TaskRowView(task: $task)
+                    
+            }
+        })
+        .padding(.vertical, 15)
+        .padding(.top, 10)
+        
+    }
+    
+    func paginateWeek() {
+        /// SafeCheck
+        if weekSlider.indices.contains(currentWeekIndex) {
+            if let firstDate = weekSlider[currentWeekIndex].first?.date, currentWeekIndex == 0 {
+                /// Inserting New Week at 0th Index and Remvoing Last Array Item
+                weekSlider.insert(firstDate.createPreviousWeek(), at: 0)
+                weekSlider.removeLast()
+                currentWeekIndex = 1
+            }
+            if let lastDate = weekSlider[currentWeekIndex].last?.date, currentWeekIndex == (weekSlider.count - 1) {
+                /// Appending New Week at Last Index and Remvoing First Array Item
+                weekSlider.append(lastDate.createNextWeek())
+                weekSlider.removeFirst()
+                currentWeekIndex = weekSlider.count - 2
             }
         }
     }
@@ -114,3 +193,5 @@ struct Home: View {
 #Preview {
     ContentView()
 }
+
+
