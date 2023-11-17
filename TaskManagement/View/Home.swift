@@ -14,6 +14,8 @@ struct Home: View {
     @State private var currentWeekIndex: Int = 1
     @State private var createWeek: Bool = false
     @State private var tasks: [Task] = sampleTask.sorted(by: { $1.creationDate > $0.creationDate})
+    @State private var createNewTask: Bool = false
+    
     /// Animation NameSpace
     @Namespace private var animation
     var body: some View {
@@ -31,6 +33,18 @@ struct Home: View {
             .scrollIndicators(.hidden)
         })
         .vSpacing(.top)
+        .overlay(alignment: .bottomTrailing, content: {
+            Button(action: {
+                createNewTask.toggle()
+            }, label: {
+                Image(systemName: "plus")
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.white)
+                    .frame(width: 55, height: 55)
+                    .background(.darkBlue.shadow(.drop(color: .black.opacity(0.25), radius: 5, x: 10, y: 10)), in: .circle)
+            })
+            .padding(15)
+        })
         .onAppear {
             if weekSlider.isEmpty {
                 let currentWeek = Date().fetchWeek()
@@ -45,8 +59,15 @@ struct Home: View {
                 }
             }
         }
+        .sheet(isPresented: $createNewTask, content: {
+            NewTaskView()
+                .presentationDetents([.height(300)])
+                .interactiveDismissDisabled()
+                .presentationCornerRadius(30)
+                .presentationBackground(.BG)
+        })
     }
-    
+    /// Header View
     @ViewBuilder
     func HeaderView() -> some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -163,7 +184,14 @@ struct Home: View {
         VStack(alignment: .leading, spacing: 35, content: {
             ForEach($tasks) { $task in
                 TaskRowView(task: $task)
-                    
+                    .background(alignment: .leading) {
+                        if tasks.last?.id != task.id {
+                            Rectangle()
+                                .frame(width: 1)
+                                .offset(x: 8)
+                                .padding(.bottom, -35)
+                        }
+                    }
             }
         })
         .padding(.vertical, 15)

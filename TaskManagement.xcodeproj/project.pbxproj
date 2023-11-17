@@ -17,6 +17,7 @@
 		ED19156D2B06942100F9C17B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19156C2B06942100F9C17B /* ContentView.swift */; };
 		ED3AE4932B07CE130059B1F3 /* OffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3AE4922B07CE130059B1F3 /* OffsetKey.swift */; };
 		ED3AE4952B07D6CA0059B1F3 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3AE4942B07D6CA0059B1F3 /* TaskRowView.swift */; };
+		EDF2B1652B07F0A600B42562 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2B1642B07F0A600B42562 /* NewTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		ED19156C2B06942100F9C17B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ED3AE4922B07CE130059B1F3 /* OffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetKey.swift; sourceTree = "<group>"; };
 		ED3AE4942B07D6CA0059B1F3 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		EDF2B1642B07F0A600B42562 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				ED19156A2B06940800F9C17B /* Home.swift */,
 				ED3AE4942B07D6CA0059B1F3 /* TaskRowView.swift */,
+				EDF2B1642B07F0A600B42562 /* NewTaskView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			files = (
 				ED1915612B068F6A00F9C17B /* Task.swift in Sources */,
 				ED1915642B0692B700F9C17B /* View+Extension.swift in Sources */,
+				EDF2B1652B07F0A600B42562 /* NewTaskView.swift in Sources */,
 				ED3AE4952B07D6CA0059B1F3 /* TaskRowView.swift in Sources */,
 				ED19156D2B06942100F9C17B /* ContentView.swift in Sources */,
 				ED3AE4932B07CE130059B1F3 /* OffsetKey.swift in Sources */,
